@@ -1,4 +1,6 @@
-Django REST Framework:
+# Django REST Framework:
+
+# API for controlling a small parking lot
 
 ----------------------------------------------
 install virtual environment
@@ -19,7 +21,7 @@ pip install -r requirements.txt
 
 ----------------------------------------------
 
-Commands:
+# Commands:
 
 This command will completely overwrite your file requirements.txt 
 - pip freeze > requirements.txt
@@ -35,3 +37,9 @@ table migrations
 
 create all tables
 - python manage.py migrate   
+
+----------------------------------------------
+
+# git repositori public
+
+https://github.com/jhonshua/Backend-Parking-Lot
