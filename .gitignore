@@ -1,0 +1,23 @@
+# Django-specific
+*.pyc
+*.pyo
+__pycache__/
+.DS_Store
+local_settings.py
+db.sqlite3
+media/
+static/
+*.log
+*.pid
+
+# Virtual environment
+venv/
+env/
+
+# IDE-specific
+.idea/
+.vscode/
+
+# Other common patterns
+*.swp
+*~
