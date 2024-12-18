@@ -1,21 +1,14 @@
 from django.db import models
-from simple_history.models import HistoricalRecords
-# Create your models here.
+from base.models import BaseModel
 
-class MeasureUnit():
+
+#------------------------------------------------------------------------
+
+class MeasureUnit(BaseModel):
     """Model definition for MeasureUnit."""
 
     # TODO: Define fields here
     description = models.CharField('Descripción', max_length=50, blank=False, null=False, unique=True)
-    historical = HistoricalRecords(user_model="users.User", inherit=True)
-    
-    @property
-    def _history_user(self):
-        return self.changed_by
-
-    @_history_user.setter
-    def _history_user(self, value):
-        self.changed_by = value
 
     class Meta:
         """Meta definition for MeasureUnit."""
@@ -27,22 +20,15 @@ class MeasureUnit():
         """Unicode representation of MeasureUnit."""
         return self.description
     
-class CategoryProduct():
+    
+#------------------------------------------------------------------------
+    
+class CategoryProduct(BaseModel):
     """Model definition for CategoryProduct."""
 
     # TODO: Define fields here
     description = models.CharField('Descripcion', max_length=50, unique=True, null=False, blank=False)
-    mesure_unit = models.ForeignKey(MeasureUnit, on_delete= models.CASCADE, verbose_name= 'unidad de Medida')
-    historical = HistoricalRecords()
 
-    @property
-    def _history_user(self):
-        return self.changed_by
-
-    @_history_user.setter
-    def _history_user(self, value):
-        self.changed_by = value
-        
     class Meta:
         """Meta definition for CategoryProduct."""
 
@@ -53,22 +39,15 @@ class CategoryProduct():
         """Unicode representation of CategoryProduct."""
         return self.description
     
-
-class Indicator():
+    
+    
+#------------------------------------------------------------------------
+class Indicator(BaseModel):
     """Model definition for Indicator."""
 
     # TODO: Define fields here
     descount_value = models.PositiveSmallIntegerField(default=0)
     category_product = models.ForeignKey(CategoryProduct, on_delete=models.CASCADE, verbose_name='Indicador de Oferta')
-    historical = HistoricalRecords()
-
-    @property
-    def _history_user(self):
-        return self.changed_by
-
-    @_history_user.setter
-    def _history_user(self, value):
-        self.changed_by = value
 
     class Meta:
         """Meta definition for Indicator."""
@@ -82,8 +61,10 @@ class Indicator():
     
     
     
-
-class Product():
+    
+    
+#------------------------------------------------------------------------
+class Product(BaseModel):
     """Model definition for Product."""
 
     # TODO: Define fields here
@@ -92,15 +73,7 @@ class Product():
     image = models.ImageField('Imagen del Producto', upload_to='products/', blank=True, null=True)
     measure_unit = models.ForeignKey(MeasureUnit, on_delete=models.CASCADE, verbose_name='Unidad de Medida', null=True)
     category_product = models.ForeignKey(CategoryProduct, on_delete=models.CASCADE, verbose_name='Categoria de Producto', null=True)
-    historical = HistoricalRecords()
-
-    @property
-    def _history_user(self):
-        return self.changed_by
-
-    @_history_user.setter
-    def _history_user(self, value):
-        self.changed_by = value
+   
     
     class Meta:
         """Meta definition for Product."""
